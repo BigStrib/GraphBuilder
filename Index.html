@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js Engine -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Vector Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Sidebar Customization Controls -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i data-lucide="activity" class="logo-icon"></i>
+             
+            </div>
+
+            <!-- Workspace Actions -->
+            <section class="control-card">
+                <h3><i data-lucide="box"></i> Project Management</h3>
+                <div class="action-grid">
+                    <button id="btn-save-local" class="btn btn-primary"><i data-lucide="save"></i> Save Local</button>
+                    <button id="btn-load-local" class="btn btn-secondary"><i data-lucide="rotate-ccw"></i> Load Local</button>
+                    <button id="btn-export-json" class="btn btn-secondary"><i data-lucide="download"></i> Export JSON</button>
+                    <button id="btn-import-trigger" class="btn btn-secondary"><i data-lucide="upload"></i> Import JSON</button>
+                    <input type="file" id="file-import" accept=".json" style="display: none;">
+                </div>
+            </section>
+
+            <!-- Chart Customization Panel -->
+            <section class="control-card">
+                <h3><i data-lucide="settings"></i> Configurations</h3>
+                
+                <div class="form-group">
+                    <label for="chart-type">Graph Architecture</label>
+                    <select id="chart-type">
+                        <option value="bar">Standard Vertical Bar</option>
+                        <option value="horizontal-bar">Horizontal Bar</option>
+                        <option value="line">Standard Line Chart</option>
+                        <option value="area">Filled Area Chart</option>
+                        <option value="pie">Circular Pie Chart</option>
+                        <option value="doughnut">Circular Doughnut</option>
+                        <option value="polarArea">Polar Area Map</option>
+                        <option value="radar">Radar Grid Mesh</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="chart-title">Main Header Title</label>
+                    <input type="text" id="chart-title" value="Performance Dashboard">
+                </div>
+
+                <div class="form-group">
+                    <label for="dataset-label">Data Legend Label</label>
+                    <input type="text" id="dataset-label" value="Target Conversions">
+                </div>
+
+                <div class="toggle-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="toggle-grid" checked>
+                        <span>Show Gridlines</span>
+                    </label>
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="toggle-theme">
+                        <span>Dark Workmode</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Dynamic Entry Matrix -->
+            <section class="control-card dynamic-matrix">
+                <h3><i data-lucide="database"></i> Data & Theme Matrix</h3>
+                <div id="data-rows-container" class="data-scroll-pane">
+                    <!-- Javascript will seamlessly inject rows here -->
+                </div>
+                <button id="btn-add-datapoint" class="btn btn-ghost"><i data-lucide="plus"></i> Add New Data Point</button>
+            </section>
+        </aside>
+
+        <!-- Live Preview Stage Area -->
+        <main class="preview-stage">
+            <header class="stage-header">
+                <span class="live-indicator">
+                    <span class="pulse-dot"></span>
+                    Studio Stage Viewport
+                </span>
+                <button id="btn-snap-png" class="btn btn-success"><i data-lucide="image"></i> Download Image (PNG)</button>
+            </header>
+            
+            <div class="canvas-viewport">
+                <div class="canvas-bounding-box">
+                    <canvas id="app-chart-instance"></canvas>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Completely Custom Floating Color Swatch Picker Utility UI -->
+    <div id="custom-color-picker-modal" class="picker-modal hidden">
+        <div class="picker-content">
+            <div class="picker-header">
+                <h4>Select Accent Color</h4>
+                <button id="close-picker-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="palette-grid">
+                <!-- Premium preset color buttons injected by JS -->
+            </div>
+        </div>
+        <div class="picker-overlay"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
